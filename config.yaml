@@ -1,0 +1,87 @@
+# CONFIGURATION
+USE_CACHE : False
+
+# API_KEY
+API_KEY : "apikey.pwd"
+
+# LOGGER
+LOG_FILENAME : "ARGUS"
+LOGGER_PREFIX : "ARGUS"
+LOGGER_PATH : "./logs"
+LOGGER_PATH_TEST : "./logs/test"
+LOG_FORMAT : "%(asctime)s\t%(name)s\t%(levelname)s\t%(message)s"
+
+# Server Dash
+DB_PATH : "utils/argus.db"
+JSON_PATH: "news_repo/from_api.json"
+
+# URL ARGUS
+URL: "https://arguspro.azurewebsites.net/"
+
+# THREADS
+NUM_WORK_THREADS : 15
+NUM_PROCESS : 4
+
+# INFO_MAIL
+FILES:
+TOKEN : "token.pickle"
+CREDENTIALS: "credentials.json"
+FROM_MAIL:
+  pakon: "fco.jle@gmail.com"
+  Nacho Portatil: "i.sotomoreno@gmail.com"
+  argus: "san.argusalerts@gmail.com"
+
+TO_MAIL:
+  - "fmerinopinedo@gmail.com"
+
+ARGUS_MAIL: 'san.argusalerts@gmail.com'
+ARGUS_PASSWORD: 'Proyectoeoi2019'
+
+SCOPES:
+  - "https://www.googleapis.com/auth/gmail.readonly"
+  - "https://www.googleapis.com/auth/gmail.send"
+
+GALERTS:
+  mail: 'san.argusalerts@gmail.com'
+  pass: 'Proyectoeoi2019'
+
+LANG_SUPPORT:
+  - 'ar'
+  - 'de'
+  - 'en'
+  - 'es'
+  - 'fr'
+  - 'he'
+  - 'it'
+  - 'nl'
+  - 'no'
+  - 'pt'
+  - 'ru'
+  - 'se'
+  - 'ud'
+  - 'zh'
+  -
+
+SORT_SUPPORT:
+  - 'relevancy'
+  - 'popularity'
+  - 'publishedAt'
+  -
+
+CAT_SUPPORT:
+  - 'business'
+  - 'entertainment'
+  - 'general'
+  - 'health'
+  - 'science'
+  - 'sports'
+  - 'technology'
+  -
+
+# POSTGRES CONNECTION AZURE
+HOST: 'argus-db-serverpro.postgres.database.azure.com'
+USER: 'argus@argus-db-serverpro'
+NAME: 'argus'
+PASSWORD: 'Proyectoeoi2019'
+PORT: '5432'
+SSLMODE: 'require'
