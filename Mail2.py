@@ -1,16 +1,27 @@
-import smtplib, ssl
+import smtplib
 
-port = 465  # For SSL
-smtp_server = "smtp.gmail.com"
-sender_email = "fmerinopinedo@gmail.com"  # Enter your address
-receiver_email = "fernando.merino@servexternos.gruposantander.com"  # Enter receiver address
-password = "grancaiberia7"
-message = """\
-Subject: Hi there
+gmail_user = 'fernando.merino@servexternos.gruposantander.com'
+gmail_password = 'Grancaiberia7'
 
-This message is sent from Python."""
+sent_from = gmail_user
+to = ['fabiola.anton@servexternos.gruposantander.com']
+subject = 'Lorem ipsum dolor sit amet'
+body = 'consectetur adipiscing elit'
 
-context = ssl.create_default_context()
-with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-    server.login(sender_email, password)
-    server.sendmail(sender_email, receiver_email, message)
+email_text = """\
+From: %s
+To: %s
+Subject: %s
+
+%s
+""" % (sent_from, ", ".join(to), subject, body)
+
+try:
+    smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    smtp_server.ehlo()
+    smtp_server.login(gmail_user, gmail_password)
+    smtp_server.sendmail(sent_from, to, email_text)
+    smtp_server.close()
+    print ("Email sent successfully!")
+except Exception as ex:
+    print ("Something went wrong….",ex)
