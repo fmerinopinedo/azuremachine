@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 subject = "An email with attachment from Python"
 body = "This is an email with attachment sent from Python"
 sender_email = "merinogrepolis@gmail.com"
-receiver_email = "fernando.merino@servexternos.gruposantander.com"
+receiver_email = ["fernando.merino@servexternos.gruposantander.com", "ernesto.budia@gruposantander.com"]
 password = "qbeeiuvtsqbrzmuu"
 
 # Create a multipart message and set headers
@@ -21,7 +21,7 @@ message["Bcc"] = receiver_email  # Recommended for mass emails
 # Add body to email
 message.attach(MIMEText(body, "plain"))
 
-filename = "articles.csv"  # In same directory as script
+filename = "output.xlsx"  # In same directory as script
 
 # Open PDF file in binary mode
 with open(filename, "rb") as attachment:
