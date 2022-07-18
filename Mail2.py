@@ -2,12 +2,11 @@ import smtplib, ssl
 
 port = 587  # For starttls
 smtp_server = "smtp.gmail.com"
-sender_email = "fernando.merino@servexternos.gruposantander.com"
-receiver_email = "fabiola.anton@servexternos.gruposantander.com"
-password = 'Grancaiberia7'
+sender_email = "merinogrepolis@gmail.com"
+receiver_email = "fernando.merino@servexternos.gruposantander.com"
+password = "qbeeiuvtsqbrzmuu"
 message = """\
 Subject: Hi there
-
 This message is sent from Python."""
 
 context = ssl.create_default_context()
