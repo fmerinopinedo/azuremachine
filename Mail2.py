@@ -1,4 +1,6 @@
 import email, smtplib, ssl
+import psycopg2
+import pandas as pd
 
 from email import encoders
 from email.mime.base import MIMEBase
@@ -18,7 +20,7 @@ def sendmails(receiver_emails):
         # Add body to email
         message.attach(MIMEText(body, "plain"))
 
-        filename = "output.xlsx"  # In same directory as script
+        filename = "operacion.xlsx"  # In same directory as script
 
         # Open PDF file in binary mode
         with open(filename, "rb") as attachment:
@@ -46,6 +48,54 @@ def sendmails(receiver_emails):
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, text)
 
+def connect(params_dic):
+    """ Connect to the PostgreSQL database server """
+    conn = None
+    try:
+        # Connect to the PostgreSQL server
+        print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(**params_dic)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+        sys.exit(1) 
+    print("Connection successful")
+    return conn
+
+def postgresql_to_dataframe(conn, select_query, column_names):
+    """
+    Tranform a SELECT query into a pandas dataframe
+    """
+    cursor = conn.cursor()
+    try:
+        cursor.execute(select_query)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print("Error: %s" % error)
+        cursor.close()
+        return 1
+    
+    # Get a list of tupples
+    tupples = cursor.fetchall()
+    cursor.close()
+    
+    # Turn it into a pandas dataframe
+    df = pd.DataFrame(tupples, columns=column_names)
+    return df
+
+# Connection parameters
+param_dic = {
+    "host"      : "argus-db-serverpro.postgres.database.azure.com",
+    "database"  : "argus",
+    "user"      : "argus@argus-db-serverpro",
+    "password"  : "Proyectoeoi2019"
+}
+
+conn = connect(param_dic)
+
+column_names = ["id", "timestamp", "publishedat", "title", "summary", "url", "urlToImage", "feedback", "entity", "score"] 
+
+df = postgresql_to_dataframe(conn, "select * from argus_dj_articles order by publishedat desc limit 100", column_names)
+df.to_excel("output.xlsx")
+print("Terminado")
 
 subject = "Informe noticias actualidad"
 body = "Adjunto archivo con las ultimas noticias de actualidad"
