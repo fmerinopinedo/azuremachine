@@ -46,10 +46,11 @@ def sendmails(receiver_emails):
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, text)
 
-subject = "Informe noticias actualidad"
-body = "Adjunto archivo con las ultimas noticias de actualidad"
-sender_email = "merinogrepolis@gmail.com"
-receiver_emails = ["fernando.merino@servexternos.gruposantander.com", "ernesto.budia@gruposantander.com"]
-password = "qbeeiuvtsqbrzmuu"
+if __name__ == '__main__':
+    subject = "Informe noticias actualidad"
+    body = "Adjunto archivo con las ultimas noticias de actualidad"
+    sender_email = "merinogrepolis@gmail.com"
+    receiver_emails = ["fernando.merino@servexternos.gruposantander.com", "ernesto.budia@gruposantander.com"]
+    password = "qbeeiuvtsqbrzmuu"
 
-sendmails(receiver_emails)
+    sendmails(receiver_emails)
