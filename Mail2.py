@@ -1,4 +1,5 @@
 import email, smtplib, ssl
+import re
 
 from email import encoders
 from email.mime.base import MIMEBase
