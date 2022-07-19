@@ -31,10 +31,10 @@ def sendmails(receiver_emails):
         encoders.encode_base64(part)
 
         # Add header as key/value pair to attachment part
-        # part.add_header(
-            # "Content-Disposition",
-            # f"attachment; filename= {filename}",
-        # )
+        part.add_header(
+            "Content-Disposition",
+            f"attachment; filename= {filename}",
+        )
 
         # Add attachment to message and convert message to string
         message.attach(part)
@@ -42,15 +42,15 @@ def sendmails(receiver_emails):
 
         # Log in to server using secure context and send email
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, text)
 
-if __name__ == '__main__':
-    subject = "Informe noticias actualidad"
-    body = "Adjunto archivo con las ultimas noticias de actualidad"
-    sender_email = "merinogrepolis@gmail.com"
-    receiver_emails = ["fernando.merino@servexternos.gruposantander.com", "ernesto.budia@gruposantander.com"]
-    password = "qbeeiuvtsqbrzmuu"
 
-    sendmails(receiver_emails)
+subject = "Informe noticias actualidad"
+body = "Adjunto archivo con las ultimas noticias de actualidad"
+sender_email = "merinogrepolis@gmail.com"
+receiver_emails = ["fernando.merino@servexternos.gruposantander.com", "ernesto.budia@gruposantander.com"]
+password = "qbeeiuvtsqbrzmuu"
+
+sendmails(receiver_emails)
