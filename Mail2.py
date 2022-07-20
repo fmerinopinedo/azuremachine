@@ -52,7 +52,7 @@ conn = connect(param_dic)
 
 column_names = ["id", "timestamp", "publishedat", "title", "summary", "url", "urlToImage", "feedback", "entity", "score"] 
 
-df = postgresql_to_dataframe(conn, "select * from argus_dj_articles order by publishedat desc limit 20000", column_names)
+df = postgresql_to_dataframe(conn, "select * from argus_dj_articles order by id desc limit 200", column_names)
 df.to_excel("output.xlsx")
 print("Terminado")
 
