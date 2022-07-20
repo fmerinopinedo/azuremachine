@@ -20,7 +20,7 @@ def sendmails(receiver_emails):
         # Add body to email
         message.attach(MIMEText(body, "plain"))
 
-        filename = "output.xlsx"  # In same directory as script
+        filename = "operacion.xlsx"  # In same directory as script
 
         # Open PDF file in binary mode
         with open(filename, "rb") as attachment:
@@ -33,10 +33,7 @@ def sendmails(receiver_emails):
         encoders.encode_base64(part)
 
         # Add header as key/value pair to attachment part
-        part.add_header(
-            "Content-Disposition",
-            f"attachment; filename= {filename}",
-        )
+        part.add_header("Content-Disposition","attachment", filename= {filename})
 
         # Add attachment to message and convert message to string
         message.attach(part)
