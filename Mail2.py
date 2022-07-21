@@ -9,7 +9,6 @@ from email.mime.text import MIMEText
 def sendmails(receiver_emails):
     for receiver_email in receiver_emails:
         # Create a multipart message and set headers
-        receiver_email = "fernando.merino@servexternos.gruposantander.com"
         message = MIMEMultipart()
         message["From"] = sender_email
         message["To"] = receiver_email
@@ -50,7 +49,9 @@ def sendmails(receiver_emails):
 subject = "Informe noticias actualidad"
 body = "Adjunto archivo con las ultimas noticias de actualidad"
 sender_email = "merinogrepolis@gmail.com"
-receiver_emails = ["fernando.merino@servexternos.gruposantander.com", "ernesto.budia@gruposantander.com"]
+with open('/home/argus/argus/mail.txt') as f:
+    lines = f.readlines()
+receiver_emails = lines[0].split(';')
 password = "qbeeiuvtsqbrzmuu"
 
 sendmails(receiver_emails)
