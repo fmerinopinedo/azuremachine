@@ -18,7 +18,7 @@ def sendmails(receiver_emails):
         # Add body to email
         message.attach(MIMEText(body, "plain"))
 
-        filename = "outp.xlsx"  # In same directory as script
+        filename = "dailynews.xlsx"  # In same directory as script
 
         # Open PDF file in binary mode
         with open(filename, "rb") as attachment:
