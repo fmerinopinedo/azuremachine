@@ -48,10 +48,10 @@ def sendmails(receiver_emails):
 
 subject = "Informe noticias actualidad"
 body = "Adjunto archivo con las ultimas noticias de actualidad"
-sender_email = "merinogrepolis@gmail.com"
+sender_email = "argusnewsg@gmail.com"
 with open('/home/argus/argus/mail.txt') as f:
     lines = f.readlines()
 receiver_emails = lines[0].split(';')
-password = "qbeeiuvtsqbrzmuu"
+password = "lpfzbdhxtrccaeyd"
 
 sendmails(receiver_emails)
